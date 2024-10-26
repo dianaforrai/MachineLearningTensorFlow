@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 from glob import glob
 from PIL import Image
+from keras.src.applications.resnet import ResNet50
 from sklearn.model_selection import train_test_split
 
 import tensorflow as tf
@@ -93,10 +94,10 @@ val_ds = (
 )
 
 
-pre_trained_model = keras.applications.EfficientNetB7(input_shape=(224, 224, 3),
+pre_trained_model = keras.applications.ResNet50(input_shape=(224, 224, 3),
     weights=None,include_top=False)
 
-pre_trained_model.load_weights('efficientnetb7_notop.h5')
+pre_trained_model.load_weights('resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5')
 
 for layer in pre_trained_model.layers:
     layer.trainable = False
